@@ -6,7 +6,7 @@ public class RockPerlinNoise : MonoBehaviour
     public Color rockColor;
     public float scale = 0.5f; // Scale of the Perlin noise
     public int octaves = 4; // Number of octaves for the Perlin noise
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    Texture2D texture;
     void Awake() 
     {
         if(offset == -1) 
@@ -16,19 +16,22 @@ public class RockPerlinNoise : MonoBehaviour
     }
     void Start()
     {
+        texture = new Texture2D(320, 180);
+        texture.filterMode = FilterMode.Point; // Set the filter mode to Point for pixelated effect
+        Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), pixelsPerUnit: 16);
+        GetComponent<SpriteRenderer>().sprite = sprite; 
         updateRock();
-
-
     }   
 
+    /*
     void OnValidate()
     {
         updateRock();
     }
+    */
 
     public void updateRock()
     {
-        Texture2D texture = new Texture2D(320, 180);
         for (int x = 0; x < texture.width; x++)
         {
 
@@ -44,10 +47,6 @@ public class RockPerlinNoise : MonoBehaviour
             }
         }
         texture.Apply();
-        texture.filterMode = FilterMode.Point; // Set the filter mode to Point for pixelated effect
-        Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), pixelsPerUnit: 16);
-
-        GetComponent<SpriteRenderer>().sprite = sprite; 
 
     }
 

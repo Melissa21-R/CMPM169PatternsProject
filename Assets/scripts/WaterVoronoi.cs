@@ -9,20 +9,27 @@ public class WaterVoronoi : MonoBehaviour
     public float speed = 1f; // Speed of the water movement
     public Vector2 direction = new Vector2(1, 1); // Direction of the water movement
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    Texture2D texture;
+    Sprite sprite;
+
     void Start()
     {
+        texture = new Texture2D(320, 180);
+        sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), pixelsPerUnit: 16);
+        texture.filterMode = FilterMode.Point; // Set the filter mode to Point for pixelated effect
+        GetComponent<SpriteRenderer>().sprite = sprite; 
         updateWater();
     }
-
+    
+    /*
     void OnValidate()
     {
         updateWater();
     }
+    */
 
     void updateWater()
     {
-        Texture2D texture = new Texture2D(320, 180);
-
         for (int x = 0; x < texture.width; x++)
         {
             for (int y = 0; y < texture.height; y++)
@@ -72,10 +79,6 @@ public class WaterVoronoi : MonoBehaviour
             }
         }
         texture.Apply();
-        texture.filterMode = FilterMode.Point; // Set the filter mode to Point for pixelated effect
-        Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), pixelsPerUnit: 16);
-
-        GetComponent<SpriteRenderer>().sprite = sprite; 
     }
     // Update is called once per frame
     void Update()
