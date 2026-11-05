@@ -20,7 +20,7 @@ public class CoralSpawner : MonoBehaviour
         updateCoral();
     }
 
-    
+    //Takes grey coral sprites and generates colored coral sprites based on the palette.
     void generateSprites()
     {
         sprites = new Sprite[28];
@@ -79,7 +79,7 @@ public class CoralSpawner : MonoBehaviour
     }
 
  
-
+// Updates coral positions based on the current offset and grid size
     public void updateCoral()
     {
         int firstCellX = Mathf.FloorToInt((offset - gridSize * 2) / gridSize);
@@ -127,7 +127,7 @@ public class CoralSpawner : MonoBehaviour
             return (h & 0xFFFFFF) / 16777216f;
         }
     }
-
+// Spawns a coral GameObject at the specified position with the specified sprite index
     GameObject spawnCoral(Vector2 position, int spriteIndex)
     {
         GameObject coral = new GameObject("Coral");
@@ -136,12 +136,8 @@ public class CoralSpawner : MonoBehaviour
         coral.AddComponent<SpriteRenderer>().sprite = sprites[spriteIndex];
         return coral;
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
+//Kills coral so that too much coral doesn't spawn when the grid size is changed.
     public void killCoral()
     {
         foreach (var coral in coralDictionary.Values)

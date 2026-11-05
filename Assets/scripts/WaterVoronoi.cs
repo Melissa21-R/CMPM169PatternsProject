@@ -28,6 +28,7 @@ public class WaterVoronoi : MonoBehaviour
     }
     */
 
+//Updates water texture using Voronoi noise every time the offset changes.
     void updateWater()
     {
         for (int x = 0; x < texture.width; x++)
@@ -87,6 +88,7 @@ public class WaterVoronoi : MonoBehaviour
         updateWater();
     }
 
+/// Hash function to generate a pseudo-random value between 0 and 1 based on x, y, and a salt
     static float Hash01(int x, int y, int salt)
     {
         unchecked

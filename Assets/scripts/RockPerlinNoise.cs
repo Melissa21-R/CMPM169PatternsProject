@@ -14,6 +14,7 @@ public class RockPerlinNoise : MonoBehaviour
             offset = Random.Range(0, 1000);
         }
     }
+
     void Start()
     {
         texture = new Texture2D(320, 180);
@@ -30,6 +31,7 @@ public class RockPerlinNoise : MonoBehaviour
     }
     */
 
+//Updates rock texture using Perlin noise every time the offset changes.
     public void updateRock()
     {
         for (int x = 0; x < texture.width; x++)
@@ -50,6 +52,7 @@ public class RockPerlinNoise : MonoBehaviour
 
     }
 
+// Returns the height of the rock at a given x position based on Perlin noise
     public int getHeight(float x)
     {
          float xCoord = (float)x * scale + 1000f; // Offset the x coordinate by the seed value
@@ -61,11 +64,5 @@ public class RockPerlinNoise : MonoBehaviour
                 frequency *= 2f;
             }
         return Mathf.RoundToInt(sample * 180); // Scale the sample to the height of the texture
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

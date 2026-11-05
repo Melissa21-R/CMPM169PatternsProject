@@ -10,12 +10,6 @@ public class InputManager : MonoBehaviour
     public float x = 0f;
     private float densityVelocity = 0f; // Density of the rock pattern
     public float densitySpeed = 1f;
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
     public void Move(InputAction.CallbackContext context)
     {
@@ -24,7 +18,7 @@ public class InputManager : MonoBehaviour
         densityVelocity = input.y * densitySpeed; // Adjust the multiplier for desired speed
     }
 
-    // Update is called once per frame
+    //Changing either x offset or the gridsize based on user input. The rock pattern and coral positions are updated accordingly.
     void Update()
     {
         if(moveVelocity != 0f)
